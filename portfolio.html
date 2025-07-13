@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        /* scroll off to left  */
+    }
+
+    .first {
+        /* background-color:#385c79; */
+        background-color: #1E2C39;
+        padding: 20px;
+        height: 580px;
+
+
+    }
+
+    .two {
+        background-color: #385c79;
+        padding: 20px;
+        height: 580px;
+        width: auto;
+
+
+    }
+
+    .three {
+        /* background-color:#385c79; */
+        background-color: #1E2C39;
+        padding: 20px;
+        height: 950px;
+
+
+    }
+
+    .four {
+        background-color: #385c79;
+        height: 670px;
+        margin: 0px;
+        padding: 20px;
+        width: 1510px;
+        margin-left: -50px;
+
+
+    }
+
+    .five {
+        /* background-color:#385c79; */
+        background-color: #1E2C39;
+        padding: 20px;
+        height: 580px;
+        width: 1510px;
+        margin-left: -50px;
+
+
+    }
+
+    .footer {
+        background-color: #385c79;
+        height: 80px;
+        padding: 5px;
+        display: flex;
+        width: 1540px;
+        margin-left: -50px;
+        border-bottom-left-radius: 75px;
+        border-bottom-right-radius: 45px;
+        justify-content: center;
+        gap: 780px;
+
+
+
+    }
+
+
+    ol {
+        list-style: none;
+        display: flex;
+        justify-content: right;
+        gap: 35px;
+        font-size: 20px;
+        color: white;
+        position: relative;
+        top: -50px;
+        left: -30px;
+    }
+
+    .list {
+        position: relative;
+        left: -925px;
+        top: 30px;
+    }
+
+    button {
+        border-radius: 10px;
+        height: 35px;
+        width: 150px;
+    }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .myimage {
+        position: relative;
+        top: -300px;
+        left: 800px;
+    }
+
+    .onesec {
+        position: relative;
+        left: 300px;
+    }
+
+    .li1 {
+        position: relative;
+        top: 200px;
+        left: -390px;
+
+    }
+
+    .s1 {
+        grid-area: s1;
+
+    }
+
+    .s2 {
+        grid-area: s2;
+    }
+
+    .s3 {
+        grid-area: s3;
+    }
+
+    .s4 {
+        grid-area: s4;
+    }
+
+    .s5 {
+        grid-area: s5;
+    }
+
+    .s6 {
+        grid-area: s6;
+    }
+
+    .gridy {
+        display: grid;
+        grid-template-areas:
+            's1 s4'
+            's2 s5'
+            's3 s6';
+        grid-gap: 10px;
+        justify-items: center;
+        padding-left: 320px;
+        padding-right: 320px;
+        padding-top: 50px;
+    }
+
+    .gridy>section {
+        height: 200px;
+        width: 300px;
+        border: 1px solid rgb(14, 136, 212);
+        padding: 10px;
+    }
+
+    input {
+        width: 250px;
+        height: 33px;
+        border: 1px solid rgb(14, 136, 212);
+        border-radius: 5px;
+        background-color: transparent;
+    }
+
+    textarea {
+        background-color: transparent;
+        border: 1px solid rgb(14, 136, 212);
+    }
+
+    input::placeholder {
+        padding: 5px;
+    }
+
+    textarea::placeholder {
+        padding: 10px;
+    }
+</style>
+
+<body>
+    <div id="top"></div>
+    <!-- THis is my first section -->
+    <div class="first" id="info">
+        <h1 style="color: white; position: relative; left: 300px;">Mohsin Malik</h1>
+        <ol>
+            <li><a href="" style="color: rgb(14, 136, 212)">Info</a></li>
+            <li><a href="#two">About Me</a></li>
+            <li><a href="#third">My Journey</a></li>
+            <li><a href="#skills">My Skills</a></li>
+            <li><a href="#contact">Contact Me</a></li>
+        </ol>
+        <section class="onesec">
+            <h1 style="color: white;">Hi,I'm Mohsin Malik</h1>
+            <h3 style="color: rgb(14, 136, 212) ;">Software Developer & AI Developer</h3>
+            <p style="color: white;">Lorem ipsum dolor, sit amet consectetur adipisicing elit. <br>Quo assumenda vero
+                architecto repellendus accusamus
+                libero iste incidunt ad a,<br> fugit officiis reiciendis dolore veritatis consequatur!</p>
+            <ol class="list">
+                <li><button
+                        style="color: black; background-color:  rgb(14, 136, 212); position: relative; left: 10px;">Hire
+                        Me</button>
+                </li>
+                <li><button
+                        style="border: 2px solid  rgb(14, 136, 212); background-color: transparent; color:  rgb(14, 136, 212)">Let's
+                        Talk</button></li>
+                <ol class="li1">
+                    <img src="facebook.png" alt="" height="25px" width="25px"
+                        style="border-radius: 50%; border: 1px solid  rgb(14, 136, 212)">
+                    <img src="indeed.png" alt="" height="25px" width="25px"
+                        style="border-radius: 50%; border: 1px solid  rgb(14, 136, 212)">
+                    <img src="icons8-twitter-bird-48.png" alt="" height="25px" width="25px"
+                        style="border-radius: 50%; border: 1px solid  rgb(14, 136, 212)">
+
+                </ol>
+            </ol>
+        </section>
+        <img src="i3.png" alt="" class="myimage" style="opacity: 0.8; ">
+
+    </div>
+    <div class="two" id="two">
+        <h1 style="text-align: center; color: white; font-weight: bolder; font-size: 40px;">About <span
+                style="color:rgb(14, 136, 212) ;">Me</span></h1>
+        <div
+            style="border-radius: 50%; border: 3px solid rgb(14, 136, 212); height: 180px; width: 180px; position: relative; left: 45%; border-top-color: transparent; border-bottom-color: transparent;">
+            <img src="i3.png" alt="" height="150" width="150"
+                style="border-radius: 50%; border: 3px solid rgb(14, 136, 212); position: relative; top: 10px; left: 12px; ">
+
+
+        </div>
+        <h3 style="color: white; text-align: center;">Software Developer & AI Developer</h3>
+        <p style="color: white; text-align: center;">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Asperiores, molestias illo <br>accusantium beatae
+            maiores, incidunt omnis iure suscipit, fugit vel <br>exercitationem. Doloremque dolor fugiat, sunt harum
+            deserunt impedit pariatur dignissimos.</p>
+        <button
+            style="background-color:rgb(14, 136, 212);color: black; font-weight: 900; position: relative; left: 45%;">Read
+            More</button>
+    </div>
+    <div id="third" class="three">
+
+        <h1 style="text-align: center; color: white; font-weight: bolder; font-size: 40px;">My <span
+                style="color:rgb(14, 136, 212) ;">Journey</span></h1>
+        <div class="gridy">
+            <h1 style="color: white; position: relative; top: -780px;">Education</h1>
+            <h1 style="color: white; position: relative; top: -780px;">Experience</h1>
+            <section class="s1">
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 15px ;width: 15px; border-radius: 50%; position: relative; left: -50px;">
+                </div>
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 240px ;width: 1.5px; border-radius: 50%; position: relative; left: -44px;">
+                </div>
+                <div style="position: relative; top:-248px;">
+
+
+                    <div style="background-color:rgb(14, 136, 212) ;  height: 10px ;width: 10px; ">
+
+                    </div>
+                    <span
+                        style="color: rgb(14, 136, 212); width: 100px; position: relative; top: -13px; left: 18px;">2007
+                        -
+                        2009 </span>
+                    <h4 style="color: white;">Bachlor in Software Engineering</h4>
+                    <p style="color: white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga,
+                        expedita perferendis
+                        blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
+                        molestiae
+                        id sunt deserunt assumenda.</p>
+                </div>
+            </section>
+            <section class="s2">
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 15px ;width: 15px; border-radius: 50%; position: relative; left: -50px;">
+                </div>
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 240px ;width: 1.5px; border-radius: 50%; position: relative; left: -44px;">
+                </div>
+                <div style="position: relative; top:-248px;">
+
+
+                    <div style="background-color:rgb(14, 136, 212) ;  height: 10px ;width: 10px; ">
+
+                    </div>
+                    <span
+                        style="color: rgb(14, 136, 212); width: 100px; position: relative; top: -13px; left: 18px;">2007
+                        -
+                        2009 </span>
+                    <h4 style="color: white;">Bachlor in Software Engineering</h4>
+                    <p style="color: white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga,
+                        expedita perferendis
+                        blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
+                        molestiae
+                        id sunt deserunt assumenda.</p>
+                </div>
+            </section>
+            <section class="s3">
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 15px ;width: 15px; border-radius: 50%; position: relative; left: -50px;">
+                </div>
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 200px ;width: 1.5px; border-radius: 50%; position: relative; left: -44px;">
+                </div>
+                <div style="position: relative; top:-218px;">
+
+
+                    <div style="background-color:rgb(14, 136, 212) ;  height: 10px ;width: 10px; ">
+
+                    </div>
+                    <span
+                        style="color: rgb(14, 136, 212); width: 100px; position: relative; top: -13px; left: 18px;">2007
+                        -
+                        2009 </span>
+                    <h4 style="color: white;">Bachlor in Software Engineering</h4>
+                    <p style="color: white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga,
+                        expedita perferendis
+                        blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
+                        molestiae
+                        id sunt deserunt assumenda.</p>
+                </div>
+            </section>
+            <section class="s4">
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 15px ;width: 15px; border-radius: 50%; position: relative; left: -50px;">
+                </div>
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 240px ;width: 1.5px; border-radius: 50%; position: relative; left: -44px;">
+                </div>
+                <div style="position: relative; top:-248px;">
+
+
+                    <div style="background-color:rgb(14, 136, 212) ;  height: 10px ;width: 10px; ">
+
+                    </div>
+                    <span
+                        style="color: rgb(14, 136, 212); width: 100px; position: relative; top: -13px; left: 18px;">2007
+                        -
+                        2009 </span>
+                    <h4 style="color: white;">Bachlor in Software Engineering</h4>
+                    <p style="color: white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga,
+                        expedita perferendis
+                        blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
+                        molestiae
+                        id sunt deserunt assumenda.</p>
+                </div>
+
+            </section>
+            <section class="s5">
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 15px ;width: 15px; border-radius: 50%; position: relative; left: -50px;">
+                </div>
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 240px ;width: 1.5px; border-radius: 50%; position: relative; left: -44px;">
+                </div>
+                <div style="position: relative; top:-248px;">
+
+
+                    <div style="background-color:rgb(14, 136, 212) ;  height: 10px ;width: 10px; ">
+
+                    </div>
+                    <span
+                        style="color: rgb(14, 136, 212); width: 100px; position: relative; top: -13px; left: 18px;">2007
+                        -
+                        2009 </span>
+                    <h4 style="color: white;">Bachlor in Software Engineering</h4>
+                    <p style="color: white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga,
+                        expedita perferendis
+                        blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
+                        molestiae
+                        id sunt deserunt assumenda.</p>
+                </div>
+            </section>
+            <section class="s6">
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 15px ;width: 15px; border-radius: 50%; position: relative; left: -50px;">
+                </div>
+                <div
+                    style="background-color: rgb(14, 136, 212) ;height: 200px ;width: 1.5px; border-radius: 50%; position: relative; left: -44px;">
+                </div>
+                <div style="position: relative; top:-218px;">
+
+
+                    <div style="background-color:rgb(14, 136, 212) ;  height: 10px ;width: 10px; ">
+
+                    </div>
+                    <span
+                        style="color: rgb(14, 136, 212); width: 100px; position: relative; top: -13px; left: 18px;">2007
+                        -
+                        2009 </span>
+                    <h4 style="color: white;">Bachlor in Software Engineering</h4>
+                    <p style="color: white;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga,
+                        expedita perferendis
+                        blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
+                        molestiae
+                        id sunt deserunt assumenda.</p>
+                </div>
+            </section>
+        </div>
+        <div class="four" id="skills">
+            <h1 style="text-align: center; color: white; font-weight: bolder; font-size: 40px;">My <span
+                    style="color:rgb(14, 136, 212) ;">Skills</span>
+                <h3 style="position: relative; left: 210px; color: white;">Coding Skills</h3>
+
+                <div style="display: flex; justify-content: center;gap: 0px; position: relative;left: -70px;  ">
+
+                    <div
+                        style="border: 3px solid rgb(14, 136, 212); height: 400px; width: 500px; position: relative; left: 100px;">
+                        <div style="padding: 10px;">
+                            <div style="display: flex;">
+                                <h4 style="color: white;">HTML</h4>
+                                <p style="position: relative; left: 380px; top: 10px; color: white;">90%</p>
+                            </div>
+                            <progress id="html-skill" value="90" max="100"
+                                style="width: 450px; height: 20px; accent-color: rgb(14, 136, 212);"></progress>
+
+                        </div>
+                        <div style="padding: 10px;">
+                            <div style="display: flex;">
+                                <h4 style="color: white;">HTML</h4>
+                                <p style="position: relative; left: 380px; top: 10px; color: white;">90%</p>
+                            </div>
+                            <progress id="html-skill" value="90" max="100"
+                                style="width: 450px; height: 20px; accent-color: rgb(14, 136, 212);"></progress>
+
+                        </div>
+                        <div style="padding: 10px;">
+                            <div style="display: flex;">
+                                <h4 style="color: white;">HTML</h4>
+                                <p style="position: relative; left: 380px; top: 10px; color: white;">90%</p>
+                            </div>
+                            <progress id="html-skill" value="90" max="100"
+                                style="width: 450px; height: 20px; accent-color: rgb(14, 136, 212);"></progress>
+
+                        </div>
+                        <div style="padding: 10px;">
+                            <div style="display: flex;">
+                                <h4 style="color: white;">HTML</h4>
+                                <p style="position: relative; left: 380px; top: 10px; color: white;">90%</p>
+                            </div>
+                            <progress id="html-skill" value="90" max="100"
+                                style="width: 450px; height: 20px; accent-color: rgb(14, 136, 212);"></progress>
+
+                        </div>
+
+
+
+
+                    </div>
+                    <h3 style="position: relative; left: 247px; color: white; top: -60px;">Professional Skills</h3>
+                    <div
+                        style="border: 3px solid rgb(14, 136, 212); height: 400px; width: 500px; position: relative; left: 100px;">
+                        <div style="padding: 10px;">
+                            <div style="display: flex;">
+                                <h4 style="color: white;">HTML</h4>
+                                <p style="position: relative; left: 380px; top: 10px; color: white;">90%</p>
+                            </div>
+                            <progress id="html-skill" value="90" max="100"
+                                style="width: 450px; height: 20px; accent-color: rgb(14, 136, 212);"></progress>
+
+                        </div>
+                        <div style="padding: 10px;">
+                            <div style="display: flex;">
+                                <h4 style="color: white;">HTML</h4>
+                                <p style="position: relative; left: 380px; top: 10px; color: white;">90%</p>
+                            </div>
+                            <progress id="html-skill" value="90" max="100"
+                                style="width: 450px; height: 20px; accent-color: rgb(14, 136, 212);"></progress>
+
+                        </div>
+                        <div style="padding: 10px;">
+                            <div style="display: flex;">
+                                <h4 style="color: white;">HTML</h4>
+                                <p style="position: relative; left: 380px; top: 10px; color: white;">90%</p>
+                            </div>
+                            <progress id="html-skill" value="90" max="100"
+                                style="width: 450px; height: 20px; accent-color: rgb(14, 136, 212);"></progress>
+
+                        </div>
+                        <div style="padding: 10px;">
+                            <div style="display: flex;">
+                                <h4 style="color: white;">HTML</h4>
+                                <p style="position: relative; left: 380px; top: 10px; color: white;">90%</p>
+                            </div>
+                            <progress id="html-skill" value="90" max="100"
+                                style="width: 450px; height: 20px; accent-color: rgb(14, 136, 212);  "></progress>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+
+        </div>
+        <div class="five" id="contact">
+            <h1 style="text-align: center; color: white; font-weight: bolder; font-size: 40px;">Contact <span
+                    style="color:rgb(14, 136, 212) ;">Me!</span></h1>
+            <form action="" style="position: relative; left: 33%;">
+                <input type="text" placeholder="Full Name" style="margin: 10px;">
+                <input type="email" placeholder="Email Address">
+                <br>
+                <input type="number" placeholder="Mobile Number" style="margin: 10px;">
+                <input type="text" placeholder="Email Subject">
+                <br>
+                <textarea placeholder="Your Message" style="height: 300px; width: 523px; margin-left: 10px;"></textarea>
+            </form>
+            <button
+                style="position: relative; left: 48%; top:10px ;font-weight: 600; background-color: rgb(14, 136, 212);">submit</button>
+
+        </div>
+        <div class="footer">
+            <h4 style="color: white; font-weight: 800;">&copy; 2024 Develop by Mohsin Malik</h4>
+            <!-- it will go up by itself otherwise you have to do in this way  -->
+            <a href="#top" style="text-decoration: none;">
+                <img src="up.png" alt="" height="40px" width="50px"
+                    style="background-color:black; border-radius: 10px; margin-top: 15px;">
+            </a>
+
+
+
+
+        </div>
+        <!-- <div>
+                    <h5>html</h5>
+                    <p>90%</p>
+                    <input type="range" max="100" min="90" style="accent-color:rgb(14, 136, 212) ;">
+
+                </div> -->
+
+
+</body>
+
+</html>
