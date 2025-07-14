@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohsin Malik - Portfolio</title>
-    <!-- Add EmailJS script -->
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("s3-CTcRvNmQWUEP9F"); // Your EmailJS public key
-        })();
-    </script>
     <style>
         :root {
             --primary-color: #1E2C39;
@@ -20,838 +19,675 @@
             --text-color: white;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
             overflow-x: hidden;
-            font-family: Arial, sans-serif;
-            color: var(--text-color);
         }
 
-        .first {
+        .bg-primary-custom {
             background-color: var(--primary-color);
-            padding: 20px;
-            min-height: 580px;
-            position: relative;
         }
 
-        .two {
+        .bg-secondary-custom {
             background-color: var(--secondary-color);
-            padding: 20px;
-            min-height: 580px;
         }
 
-        .three {
-            background-color: var(--primary-color);
-            padding: 20px;
-            min-height: 950px;
-        }
-
-        .four {
-            background-color: var(--secondary-color);
-            min-height: 670px;
-            padding: 20px;
-        }
-
-        .five {
-            background-color: var(--primary-color);
-            padding: 20px;
-            min-height: 580px;
-        }
-
-        .six {
-            background-color: var(--secondary-color);
-            padding: 20px;
-            min-height: 580px;
-        }
-
-        .footer {
-            background-color: var(--secondary-color);
-            height: 80px;
-            padding: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 20px;
-            border-bottom-left-radius: 75px;
-            border-bottom-right-radius: 45px;
-        }
-
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 20px;
-        }
-
-        .nav-links li a {
-            color: var(--text-color);
-            text-decoration: none;
-            font-size: 18px;
-            transition: color 0.3s;
-        }
-
-        .nav-links li a:hover {
+        .text-accent {
             color: var(--accent-color);
         }
 
-        /* Hero Section */
-        .hero {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 50px 0;
-        }
-
-        .hero-content {
-            max-width: 600px;
-            z-index: 2;
-        }
-
-        .hero-image {
-            position: absolute;
-            right: 50px;
-            top: 150px;
-            max-width: 40%;
-            opacity: 0.8;
-            z-index: 1;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        button {
-            border-radius: 10px;
-            height: 35px;
-            width: 150px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .primary-btn {
+        .btn-accent {
             background-color: var(--accent-color);
             color: black;
-            border: none;
+            font-weight: 500;
         }
 
-        .secondary-btn {
-            border: 2px solid var(--accent-color);
-            background-color: transparent;
+        .btn-outline-accent {
+            border-color: var(--accent-color);
             color: var(--accent-color);
         }
 
-        button:hover {
+        .btn-accent:hover,
+        .btn-outline-accent:hover {
+            background-color: var(--accent-color);
+            color: black;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
-        .social-icons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
+        .section-title {
+            font-weight: 700;
+            margin-bottom: 3rem;
         }
 
-        .social-icons img {
-            border-radius: 50%;
-            border: 1px solid var(--accent-color);
-            height: 25px;
-            width: 25px;
-            transition: transform 0.3s;
-        }
-
-        .social-icons img:hover {
-            transform: scale(1.2);
+        /* Hero Section */
+        .hero-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
         /* About Section */
-        .about {
-            text-align: center;
-            padding: 50px 20px;
-        }
-
         .profile-image {
-            border-radius: 50%;
-            border: 3px solid var(--accent-color);
-            height: 180px;
             width: 180px;
-            margin: 30px auto;
+            height: 180px;
+            border: 3px solid var(--accent-color);
+            border-radius: 50%;
+            padding: 5px;
             position: relative;
-            border-top-color: transparent;
-            border-bottom-color: transparent;
+            margin: 0 auto 2rem;
         }
 
         .profile-image img {
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
             border: 3px solid var(--accent-color);
-            height: 150px;
-            width: 150px;
-            position: absolute;
-            top: 10px;
-            left: 12px;
         }
 
         /* Projects Section */
-        .projects {
-            padding: 50px 20px;
-            background-color: var(--primary-color);
-        }
-
-        .projects-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
         .project-card {
             border: 1px solid var(--accent-color);
             border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
+            height: 100%;
         }
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(14, 136, 212, 0.2);
+            box-shadow: 0 10px 20px rgba(14, 136, 212, 0.3);
         }
 
-        .project-image {
-            width: 100%;
-            height: 180px;
+        .project-img {
+            height: 200px;
             object-fit: cover;
-            border-radius: 5px;
-            margin-bottom: 15px;
+            border-radius: 10px 10px 0 0;
         }
 
-        .project-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .project-link {
-            color: var(--accent-color);
-            text-decoration: none;
-            border: 1px solid var(--accent-color);
-            padding: 5px 15px;
-            border-radius: 5px;
-            transition: all 0.3s;
-        }
-
-        .project-link:hover {
-            background-color: var(--accent-color);
-            color: black;
-        }
-
-        /* Journey Section */
-        .journey {
-            padding: 50px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 40px;
-            font-weight: bolder;
-            margin-bottom: 50px;
-        }
-
-        .section-title span {
-            color: var(--accent-color);
-        }
-
-        .timeline {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 992px) {
-            .timeline {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
+        /* Timeline */
         .timeline-item {
-            border: 1px solid var(--accent-color);
-            padding: 20px;
             position: relative;
-            margin-left: 30px;
+            padding-left: 3rem;
+            margin-bottom: 2rem;
         }
 
-        .timeline-item::before {
+        .timeline-item:before {
             content: '';
             position: absolute;
-            left: -30px;
-            top: 20px;
-            width: 15px;
-            height: 15px;
+            left: 0;
+            top: 5px;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             background-color: var(--accent-color);
         }
 
-        .timeline-item::after {
+        .timeline-item:after {
             content: '';
             position: absolute;
-            left: -23px;
-            top: 35px;
-            bottom: -20px;
-            width: 1.5px;
+            left: 10px;
+            top: 25px;
+            bottom: -25px;
+            width: 2px;
             background-color: var(--accent-color);
         }
 
-        .timeline-item:last-child::after {
+        .timeline-item:last-child:after {
             display: none;
         }
 
-        .timeline-date {
-            color: var(--accent-color);
-            margin-bottom: 10px;
-        }
-
-        /* Skills Section */
-        .skills {
-            padding: 50px 20px;
-        }
-
-        .skills-container {
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        @media (min-width: 768px) {
-            .skills-container {
-                flex-direction: row;
-            }
-        }
-
-        .skills-column {
-            flex: 1;
-            border: 3px solid var(--accent-color);
-            padding: 20px;
-        }
-
-        .skill-item {
-            margin-bottom: 20px;
-        }
-
-        .skill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-
-        progress {
+        /* Skills */
+        .skill-item progress {
             width: 100%;
-            height: 20px;
+            height: 10px;
             accent-color: var(--accent-color);
         }
 
-        /* Contact Section */
-        .contact {
-            padding: 50px 20px;
-        }
-
-        .contact-form {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .form-row {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        @media (min-width: 576px) {
-            .form-row {
-                flex-direction: row;
-            }
-        }
-
-        .form-group {
-            flex: 1;
-        }
-
-        input, textarea {
-            width: 100%;
-            height: 40px;
-            border: 1px solid var(--accent-color);
-            border-radius: 5px;
+        /* Contact Form */
+        .form-control {
             background-color: transparent;
-            color: var(--text-color);
-            padding: 0 10px;
+            border: 1px solid var(--accent-color);
+            color: white;
         }
 
-        textarea {
-            height: 200px;
-            padding: 10px;
-            resize: vertical;
+        .form-control:focus {
+            background-color: rgba(14, 136, 212, 0.1);
+            border-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 0 0 0.25rem rgba(14, 136, 212, 0.25);
         }
 
-        input::placeholder, textarea::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .submit-btn {
-            display: block;
-            margin: 20px auto 0;
-            background-color: var(--accent-color);
-            color: black;
-            font-weight: 600;
-            border: none;
-            padding: 10px 30px;
-        }
-
-        /* Form Status Message */
-        .status-message {
-            text-align: center;
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            display: none;
-        }
-
-        .success {
-            background-color: rgba(0, 255, 0, 0.2);
-            color: lightgreen;
-            display: block;
-        }
-
-        .error {
-            background-color: rgba(255, 0, 0, 0.2);
-            color: lightcoral;
-            display: block;
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
         }
 
         /* Footer */
+        .footer {
+            border-bottom-left-radius: 75px;
+            border-bottom-right-radius: 45px;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            transition: all 0.3s;
+        }
+
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            color: black;
+            transform: scale(1.1);
+        }
+
+        /* Back to top button */
         .back-to-top {
-            background-color: black;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             border-radius: 10px;
-            padding: 5px;
-            transition: transform 0.3s;
+            background-color: black;
+            color: white;
+            transition: all 0.3s;
         }
 
         .back-to-top:hover {
             transform: translateY(-5px);
+            color: var(--accent-color);
         }
 
-        /* Responsive Adjustments */
-        @media (max-width: 992px) {
-            .hero-image {
-                position: static;
-                max-width: 100%;
-                margin-top: 30px;
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .profile-image {
+                width: 150px;
+                height: 150px;
             }
 
-            .hero {
-                align-items: center;
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero-content {
                 text-align: center;
             }
 
-            .hero-buttons, .social-icons {
-                justify-content: center;
-            }
-
-            .nav-links {
-                gap: 10px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 32px;
-            }
-
-            .profile-image {
-                height: 150px;
-                width: 150px;
-            }
-
-            .profile-image img {
-                height: 120px;
-                width: 120px;
-                top: 8px;
-                left: 10px;
-            }
-
-            .footer {
-                flex-direction: column;
-                gap: 10px;
-                padding: 20px;
-                height: auto;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .nav-links {
-                flex-direction: column;
-                gap: 5px;
-            }
-
             .hero-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .skills-column {
-                padding: 10px;
-            }
-
-            .project-links {
-                flex-direction: column;
+                justify-content: center;
             }
         }
     </style>
 </head>
 
 <body>
-    <div id="top"></div>
-    
-    <!-- First Section - Hero -->
-    <div class="first" id="info">
-        <nav>
-            <h1>Mohsin Malik</h1>
-            <ul class="nav-links">
-                <li><a href="#info" style="color: var(--accent-color)">Info</a></li>
-                <li><a href="#two">About Me</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#third">My Journey</a></li>
-                <li><a href="#skills">My Skills</a></li>
-                <li><a href="#contact">Contact Me</a></li>
-            </ul>
-        </nav>
-        
-        <div class="hero">
-            <div class="hero-content">
-                <h1>Hi, I'm Mohsin Malik</h1>
-                <h3 style="color: var(--accent-color);">Software Developer & AI Developer</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quo assumenda vero architecto repellendus accusamus
-                    libero iste incidunt ad a, fugit officiis reiciendis dolore veritatis consequatur!</p>
-                
-                <div class="hero-buttons">
-                    <button class="primary-btn">Hire Me</button>
-                    <button class="secondary-btn">Let's Talk</button>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary-custom fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">Mohsin Malik</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#projects">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#journey">Journey</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-primary-custom py-5" style="padding-top: 80px !important;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-3">Hi, I'm Mohsin Malik</h1>
+                    <h3 class="text-accent mb-4">Software Developer & AI Developer</h3>
+                    <p class="lead mb-4">Passionate about creating innovative solutions through code and artificial
+                        intelligence. Specializing in full-stack development and machine learning applications.</p>
+
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="#contact" class="btn btn-accent btn-lg">Hire Me</a>
+                        <a href="#contact" class="btn btn-outline-accent btn-lg">Let's Talk</a>
+                    </div>
+
+                    <div class="d-flex gap-3">
+                        <a href="https://www.linkedin.com/in/mohsin-malik-ema567/" target="_blank"
+                            class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/dashboard" target="_blank" class="social-icon"><i
+                                class="fab fa-github"></i></a>
+
+                    </div>
                 </div>
-                
-                <div class="social-icons">
-                    <img src="facebook.png" alt="Facebook">
-                    <img src="indeed.png" alt="Indeed">
-                    <img src="icons8-twitter-bird-48.png" alt="Twitter">
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <img src="i3.png" alt="Mohsin Malik" class="hero-image img-fluid">
                 </div>
             </div>
-            
-            <img src="i3.png" alt="Mohsin Malik" class="hero-image">
         </div>
-    </div>
-    
-    <!-- About Me Section -->
-    <div class="two" id="two">
-        <div class="about">
-            <h1 class="section-title">About <span>Me</span></h1>
-            
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="bg-secondary-custom py-5">
+        <div class="container text-center">
+            <h2 class="section-title">About <span class="text-accent">Me</span></h2>
+
             <div class="profile-image">
-                <img src="i3.png" alt="Mohsin Malik">
+                <img src="i3.png" alt="Mohsin Malik" class="img-fluid">
             </div>
-            
-            <h3>Software Developer & AI Developer</h3>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores, molestias illo accusantium beatae
-                maiores, incidunt omnis iure suscipit, fugit vel exercitationem. Doloremque dolor fugiat, sunt harum
-                deserunt impedit pariatur dignissimos.</p>
-                
-            <button class="primary-btn" style="margin-top: 20px;">Read More</button>
+
+            <h3 class="mb-3">Software Developer & AI Developer</h3>
+            <p class="lead mx-auto" style="max-width: 700px;">
+                With over 5 years of experience in software development and artificial intelligence, I specialize in
+                creating efficient, scalable solutions. My expertise spans across web development, machine learning
+                models, and cloud computing.
+            </p>
+            <p class="mx-auto" style="max-width: 700px;">
+                I'm passionate about solving complex problems and continuously learning new technologies. When I'm not
+                coding, you can find me contributing to open-source projects or mentoring aspiring developers.
+            </p>
+
+            <a href="#journey" class="btn btn-accent mt-3">Learn More</a>
         </div>
-    </div>
-    
+    </section>
+
     <!-- Projects Section -->
-    <div class="six" id="projects">
-        <div class="projects">
-            <h1 class="section-title">My <span>Projects</span></h1>
-            
-            <div class="projects-container">
+    <section id="projects" class="bg-primary-custom py-5">
+        <div class="container mx-5">
+            <h2 class="section-title text-center">My <span class="text-accent">Projects</span></h2>
+
+            <div class="row g-4 ">
                 <!-- Project 1 -->
-                <div class="project-card">
-                    <img src="project1.jpg" alt="Project 1" class="project-image">
-                    <h3>E-commerce Website</h3>
-                    <p>A fully responsive e-commerce platform with product listings, cart functionality, and secure checkout.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/yourusername/ecommerce-site" class="project-link" target="_blank">GitHub</a>
-                        <a href="https://your-ecommerce-site.com" class="project-link" target="_blank">Live Demo</a>
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="first.png" class="card-img-top project-img" alt="E-commerce Website">
+                        <div class="card-body">
+                            <h5 class="card-title">E-commerce Platform</h5>
+                            <p class="card-text">
+                            <p class="card-text">
+                                A responsive eCommerce frontend built with Next.js, featuring product listings and a
+                                user-friendly cart interface.
+                            </p>
+                            </p>
+                            <div class="d-flex gap-2">
+                                <a href="https://github.com/Alpha125-mohsin/figmawebsite" target="_blank"
+                                    class="btn btn-sm btn-outline-accent">GitHub</a>
+                                <a href="https://figma-ecommerce-site.vercel.app/" target="_blank"
+                                    class="btn btn-sm btn-accent">Live
+                                    Demo</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
+
                 <!-- Project 2 -->
-                <div class="project-card">
-                    <img src="project2.jpg" alt="Project 2" class="project-image">
-                    <h3>AI Chatbot</h3>
-                    <p>An intelligent chatbot using natural language processing to answer customer queries in real-time.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/yourusername/ai-chatbot" class="project-link" target="_blank">GitHub</a>
-                        <a href="https://your-chatbot.com" class="project-link" target="_blank">Live Demo</a>
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="two.png" class="card-img-top project-img" alt="AI Chatbot">
+                        <div class="card-body">
+                            <h5 class="card-title">Mental & Physical Health Platform</h5>
+                            <p class="card-text">
+                                A collaborative health companion app developed in Next.js. This project is a
+                                work-in-progress, aiming to provide tools for mental wellness and physical health
+                                tracking.
+                            </p>
+                            <div class="d-flex gap-2">
+                                <a href="https://github.com/Alpha125-mohsin/rocky_companionhealth" target="_blank"
+                                    class="btn btn-sm btn-outline-accent">GitHub</a>
+                                <a href="https://companionhealth.life/" target="_blank"
+                                    class="btn btn-sm btn-accent">Live Demo</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
+
                 <!-- Project 3 -->
-                <div class="project-card">
-                    <img src="project3.jpg" alt="Project 3" class="project-image">
-                    <h3>Portfolio Website</h3>
-                    <p>A responsive portfolio website showcasing my skills, projects, and professional journey.</p>
-                    <div class="project-links">
-                        <a href="https://github.com/yourusername/portfolio" class="project-link" target="_blank">GitHub</a>
-                        <a href="https://your-portfolio.com" class="project-link" target="_blank">Live Demo</a>
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="three.png" class="card-img-top project-img" alt="Data Dashboard">
+                        <div class="card-body">
+                            <h5 class="card-title">Automatic Fabric Detection system (CNN)</h5>
+                            <p class="card-text">
+                                An intelligent fabric detection system built using (CNNs)
+                                for pattern recognition and classification.
+                                The system includes an interactive frontend developed in Flutter, and a backend powered
+                                by Python-based machine learning.
+
+                            </p>
+                            <div class="d-flex gap-2">
+                                <a href="https://drive.google.com/drive/folders/1u1e6KKejKxZu0K7u5LSZVN6PEoldJwmR?usp=sharing"
+                                    target="_blank" class="btn btn-sm btn-outline-accent">Drive</a>
+                                <a href="https://drive.google.com/file/d/1MydI1GfufzOzm4Kwa5r7EXbTq9Q5ocjO/view?usp=sharing"
+                                    target="_blank" class="btn btn-sm btn-accent">Live Demo</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- My Journey Section -->
-    <div id="third" class="three">
-        <div class="journey">
-            <h1 class="section-title">My <span>Journey</span></h1>
-            
-            <div class="timeline">
-                <div>
-                    <h2 style="color: var(--text-color); text-align: center; margin-bottom: 20px;">Education</h2>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2007 - 2009</div>
-                        <h4>Bachelor in Software Engineering</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga, expedita perferendis
-                            blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
-                            molestiae id sunt deserunt assumenda.</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2007 - 2009</div>
-                        <h4>Bachelor in Software Engineering</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga, expedita perferendis
-                            blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
-                            molestiae id sunt deserunt assumenda.</p>
-                    </div>
-                    
-                    <div class="timeline-item">
-                        <div class="timeline-date">2007 - 2009</div>
-                        <h4>Bachelor in Software Engineering</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga, expedita perferendis
-                            blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
-                            molestiae id sunt deserunt assumenda.</p>
+
+                <div class="col-md-4">
+                    <div class="project-card">
+                        <img src="four.jpg" class="card-img-top project-img" alt="Data Dashboard">
+                        <div class="card-body">
+                            <h5 class="card-title">Sport prediction</h5>
+                            <p class="card-text">
+                            <p class="card-text">
+                                A smart sports prediction app developed using Flutter for the frontend and Python for
+                                machine learning.
+                                It analyzes historical match data to predict outcomes, offering users real-time insights
+                                and intuitive visualizations.
+                            </p>
+
+                            </p>
+                            <div class="d-flex gap-2">
+                                <a href="https://drive.google.com/drive/folders/1ZbQw6KoFyKwnbYCYw-nbnfbDnv354dVO?usp=sharing"
+                                    target="_blank" class="btn btn-sm btn-outline-accent">Drive</a>
+                                <a href="https://drive.google.com/file/d/1capIQYfpn60KHTTJqVlTR1AuV1rqhxnA/view?usp=sharing"
+                                    target="_blank" class="btn btn-sm btn-accent">Live Demo</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <div>
-                    <h2 style="color: var(--text-color); text-align: center; margin-bottom: 20px;">Experience</h2>
-                    
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Section -->
+    <section id="journey" class="bg-secondary-custom py-5">
+        <div class="container">
+            <h2 class="section-title text-center">My <span class="text-accent">Journey</span></h2>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <h3 class="text-center mb-4">Education</h3>
+
+
                     <div class="timeline-item">
-                        <div class="timeline-date">2007 - 2009</div>
-                        <h4>Bachelor in Software Engineering</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga, expedita perferendis
-                            blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
-                            molestiae id sunt deserunt assumenda.</p>
+                        <h5 class="text-accent">2020 - 2024</h5>
+                        <h4>Bachelor in Software Engineering </h4>
+                        <p> Specialized in web, mobile, and AI development. Worked on academic projects using Flutter,
+                            Python, and React.
+                        </p>
                     </div>
-                    
                     <div class="timeline-item">
-                        <div class="timeline-date">2007 - 2009</div>
-                        <h4>Bachelor in Software Engineering</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga, expedita perferendis
-                            blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
-                            molestiae id sunt deserunt assumenda.</p>
+                        <h5 class="text-accent">2018 – 2020</h5>
+                        <h4>Intermediate in Computer Science – Karachi</h4>
+                        <p>
+                            Built a strong foundation in programming, databases, and computer science concepts.
+                        </p>
                     </div>
-                    
+
                     <div class="timeline-item">
-                        <div class="timeline-date">2007 - 2009</div>
-                        <h4>Bachelor in Software Engineering</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet modi fuga, expedita perferendis
-                            blanditiis qui praesentium illo itaque explicabo reiciendis veniam ullam aut animi maxime
-                            molestiae id sunt deserunt assumenda.</p>
+                        <h5 class="text-accent">2017 - 2018</h5>
+                        <h4>Advanced Diploma in Web Development</h4>
+                        <p>Learned fundamentals of web technologies including HTML, CSS, JavaScript, and PHP.</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <h3 class="text-center mb-4">Experience</h3>
+
+                    <div class="timeline-item">
+                        <h5 class="text-accent">2021 - Present</h5>
+                        <h4>Senior AI Developer</h4>
+                        <p>Leading a team to develop machine learning models for predictive analytics in healthcare.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5 class="text-accent">2018 - 2021</h5>
+                        <h4>Full-stack Developer</h4>
+                        <p>Built and maintained enterprise-level web applications using React, Node.js, and MongoDB.</p>
+                    </div>
+
+                    <div class="timeline-item">
+                        <h5 class="text-accent">2016 - 2018</h5>
+                        <h4>Junior Web Developer</h4>
+                        <p>Developed responsive websites and web applications for small businesses and startups.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
+    </section>
+
     <!-- Skills Section -->
-    <div class="four" id="skills">
-        <div class="skills">
-            <h1 class="section-title">My <span>Skills</span></h1>
-            
-            <div class="skills-container">
-                <div class="skills-column">
-                    <h3 style="text-align: center; margin-bottom: 20px;">Coding Skills</h3>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <h4>HTML</h4>
-                            <p>90%</p>
+    <section id="skills" class="bg-primary-custom py-5">
+        <div class="container">
+            <h2 class="section-title text-center">My <span class="text-accent">Skills</span></h2>
+
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="p-4 border border-accent rounded-3 h-100">
+                        <h3 class="text-center mb-4">Technical Skills</h3>
+
+                        <div class="skill-item mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <h5>HTML/CSS/Java script</h5>
+                                <span>90%</span>
+                            </div>
+                            <progress class="w-100" value="90" max="100"></progress>
                         </div>
-                        <progress value="90" max="100"></progress>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <h4>CSS</h4>
-                            <p>85%</p>
+
+                        <div class="skill-item mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <h5>PHP</h5>
+                                <span>90%</span>
+                            </div>
+                            <progress class="w-100" value="90" max="100"></progress>
                         </div>
-                        <progress value="85" max="100"></progress>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <h4>JavaScript</h4>
-                            <p>80%</p>
+
+                        <div class="skill-item mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <h5>Python</h5>
+                                <span>95%</span>
+                            </div>
+                            <progress class="w-100" value="95" max="100"></progress>
                         </div>
-                        <progress value="80" max="100"></progress>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <h4>Python</h4>
-                            <p>75%</p>
+
+                        <div class="skill-item mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <h5>Dart</h5>
+                                <span>80%</span>
+                            </div>
+                            <progress class="w-100" value="80" max="100"></progress>
                         </div>
-                        <progress value="75" max="100"></progress>
                     </div>
                 </div>
-                
-                <div class="skills-column">
-                    <h3 style="text-align: center; margin-bottom: 20px;">Professional Skills</h3>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <h4>Communication</h4>
-                            <p>90%</p>
+
+                <div class="col-md-6">
+                    <div class="p-4 border border-accent rounded-3 h-100">
+                        <h3 class="text-center mb-4">Professional Skills</h3>
+
+                        <div class="skill-item mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <h5>Problem Solving</h5>
+                                <span>95%</span>
+                            </div>
+                            <progress class="w-100" value="95" max="100"></progress>
                         </div>
-                        <progress value="90" max="100"></progress>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <h4>Teamwork</h4>
-                            <p>85%</p>
+
+                        <div class="skill-item mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <h5>Teamwork</h5>
+                                <span>90%</span>
+                            </div>
+                            <progress class="w-100" value="90" max="100"></progress>
                         </div>
-                        <progress value="85" max="100"></progress>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <h4>Problem Solving</h4>
-                            <p>95%</p>
+
+                        <div class="skill-item mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <h5>Communication</h5>
+                                <span>85%</span>
+                            </div>
+                            <progress class="w-100" value="85" max="100"></progress>
                         </div>
-                        <progress value="95" max="100"></progress>
-                    </div>
-                    
-                    <div class="skill-item">
-                        <div class="skill-header">
-                            <h4>Creativity</h4>
-                            <p>80%</p>
+
+                        <div class="skill-item mb-3">
+                            <div class="d-flex justify-content-between mb-1">
+                                <h5>Project Management</h5>
+                                <span>80%</span>
+                            </div>
+                            <progress class="w-100" value="80" max="100"></progress>
                         </div>
-                        <progress value="80" max="100"></progress>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    
+    </section>
+
     <!-- Contact Section -->
-    <div class="five" id="contact">
-        <div class="contact">
-            <h1 class="section-title">Contact <span>Me!</span></h1>
-            
-            <form id="contact-form" class="contact-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="text" id="name" name="from_name" placeholder="Full Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" id="email" name="from_email" placeholder="Email Address" required>
-                    </div>
+    <section id="contact" class="bg-secondary-custom py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Contact <span class="text-accent">Me!</span></h2>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <form id="contact-form" class="needs-validation" novalidate>
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="name" name="from_name"
+                                    placeholder="Full Name" required>
+                                <div class="invalid-feedback">
+                                    Please provide your name.
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="email" class="form-control" id="email" name="from_email"
+                                    placeholder="Email Address" required>
+                                <div class="invalid-feedback">
+                                    Please provide a valid email.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <input type="tel" class="form-control" id="phone" name="phone"
+                                    placeholder="Mobile Number">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" id="subject" name="subject"
+                                    placeholder="Email Subject" required>
+                                <div class="invalid-feedback">
+                                    Please provide a subject.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <textarea class="form-control" id="message" name="message" rows="5"
+                                placeholder="Your Message" required></textarea>
+                            <div class="invalid-feedback">
+                                Please write your message.
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-accent btn-lg px-4">Send Message</button>
+                        </div>
+
+                        <div id="form-status" class="mt-3 text-center"></div>
+                    </form>
                 </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <input type="number" id="phone" name="phone" placeholder="Mobile Number">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="subject" name="subject" placeholder="Email Subject" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Submit</button>
-                
-                <div id="form-status" class="status-message"></div>
-            </form>
+            </div>
         </div>
-    </div>
-    
+    </section>
+
     <!-- Footer -->
-    <div class="footer">
-        <h4>&copy; 2024 Developed by Mohsin Malik</h4>
-        <a href="#top" class="back-to-top">
-            <img src="up.png" alt="Back to top" height="40px" width="50px">
-        </a>
-    </div>
+    <footer class="footer bg-secondary-custom py-3">
+        <div class="container">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <div class="mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2024 Mohsin Malik. All rights reserved.</p>
+                </div>
+                <div class="d-flex gap-3">
+
+                    <a href="https://www.linkedin.com/in/mohsin-malik-ema567/" target="_blank" class="social-icon"><i
+                            class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/dashboard" target="_blank" class="social-icon"><i
+                            class="fab fa-github"></i></a>
+
+                </div>
+                <a href="#home" class="back-to-top mt-3 mt-md-0">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
-        // Initialize EmailJS with your public key
-        emailjs.init("s3-CTcRvNmQWUEP9F");
-        
+        // Initialize EmailJS
+        (function () {
+            emailjs.init("s3-CTcRvNmQWUEP9F");
+        })();
+
         // Contact Form Submission
-        document.getElementById('contact-form').addEventListener('submit', function(event) {
+        document.getElementById('contact-form').addEventListener('submit', function (event) {
             event.preventDefault();
-            
+
             const form = this;
             const status = document.getElementById('form-status');
-            status.classList.remove('success', 'error');
-            
-            // Use your actual IDs
+
+            // Validate form
+            if (!form.checkValidity()) {
+                event.stopPropagation();
+                form.classList.add('was-validated');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+            submitBtn.disabled = true;
+
+            // EmailJS parameters
             const serviceID = 'service_auknn99';
             const templateID = 'template_ki2ehku';
-            
-            // Debug: Log form data before sending
-            console.log("Form data being sent:", {
-                from_name: form.from_name.value,
-                from_email: form.from_email.value,
-                phone: form.phone.value,
-                subject: form.subject.value,
-                message: form.message.value
-            });
-            
+
+            // Send email
             emailjs.sendForm(serviceID, templateID, form)
-                .then(function(response) {
+                .then(function (response) {
                     console.log('SUCCESS!', response.status, response.text);
-                    status.textContent = 'Message sent successfully! I will get back to you soon.';
-                    status.classList.add('success');
+                    status.innerHTML = '<div class="alert alert-success">Message sent successfully! I will get back to you soon.</div>';
                     form.reset();
-                }, function(error) {
+                    form.classList.remove('was-validated');
+                }, function (error) {
                     console.log('FAILED...', error);
-                    status.textContent = 'Failed to send message. Please try again later or contact me directly at mmohsin743mm@gmail.com';
-                    status.classList.add('error');
+                    status.innerHTML = '<div class="alert alert-danger">Failed to send message. Please try again later or contact me directly at mmohsin743mm@gmail.com</div>';
+                })
+                .finally(function () {
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+
+                    // Scroll to status message
+                    status.scrollIntoView({ behavior: 'smooth' });
                 });
         });
 
@@ -859,12 +695,35 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }); 
+
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    // Close mobile menu if open
+                    const navbarCollapse = document.querySelector('.navbar-collapse');
+                    if (navbarCollapse.classList.contains('show')) {
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.hide();
+                    }
+
+                    // Scroll to target
+                    window.scrollTo({
+                        top: target.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function () {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
         });
     </script>
 </body>
+
 </html>
