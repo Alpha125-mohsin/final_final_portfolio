@@ -3,554 +3,1061 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohsin Malik - Portfolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Mohsin Malik | Full Stack & AI Developer | Laravel | Python | Automation</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Font Awesome -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- GSAP with plugins -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/MotionPathPlugin.min.js"></script>
+    <!-- Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js"
+            }
+        }
+    </script>
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <style>
-        :root {
-            --primary-color: #1E2C39;
-            --secondary-color: #385c79;
-            --accent-color: rgb(14, 136, 212);
-            --text-color: white;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            background: #050508;
+            color: #ffffff;
             overflow-x: hidden;
+            cursor: none;
         }
 
-        .bg-primary-custom {
-            background-color: var(--primary-color);
+        /* Custom cursor with trail */
+        .cursor {
+            width: 8px;
+            height: 8px;
+            background: #ff3366;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99999;
+            transition: transform 0.1s;
+            box-shadow: 0 0 15px #ff3366;
         }
 
-        .bg-secondary-custom {
-            background-color: var(--secondary-color);
+        .cursor-follower {
+            width: 45px;
+            height: 45px;
+            border: 2px solid rgba(255, 51, 102, 0.6);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 99998;
+            transition: all 0.15s ease-out;
+            backdrop-filter: blur(2px);
         }
 
-        .text-accent {
-            color: var(--accent-color);
+        /* Variables */
+        :root {
+            --laravel-red: #FF2D20;
+            --neon-cyan: #00F0FF;
+            --neon-purple: #9D4EDD;
+            --neon-gold: #FFD700;
+            --gradient-laravel: linear-gradient(135deg, #FF2D20, #FF6B6B, #FF2D20);
+            --gradient-ai: linear-gradient(135deg, #00F0FF, #9D4EDD, #FF2D20);
+            --gradient-gold: linear-gradient(135deg, #FFD700, #FF8C00);
+            --glass-bg: rgba(10, 10, 10, 0.6);
+            --glass-border: 1px solid rgba(255, 45, 32, 0.3);
         }
 
-        .btn-accent {
-            background-color: var(--accent-color);
-            color: black;
-            font-weight: 500;
-        }
-
-        .btn-outline-accent {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
-
-        .btn-accent:hover,
-        .btn-outline-accent:hover {
-            background-color: var(--accent-color);
-            color: black;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .section-title {
+        h1,
+        h2,
+        h3,
+        .navbar-brand {
+            font-family: 'Space Grotesk', monospace;
             font-weight: 700;
-            margin-bottom: 3rem;
         }
 
-        /* Hero Section */
-        .hero-image {
-            max-width: 100%;
-            height: auto;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        /* About Section */
-        .profile-image {
-            width: 180px;
-            height: 180px;
-            border: 3px solid var(--accent-color);
-            border-radius: 50%;
-            padding: 5px;
-            position: relative;
-            margin: 0 auto 2rem;
-        }
-
-        .profile-image img {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 3px solid var(--accent-color);
-        }
-
-        /* Projects Section */
-        .project-card {
-            border: 1px solid var(--accent-color);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            height: 100%;
-        }
-
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(14, 136, 212, 0.3);
-        }
-
-        .project-img {
-            height: 200px;
-            object-fit: cover;
-            border-radius: 10px 10px 0 0;
-        }
-
-        /* Timeline */
-        .timeline-item {
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .timeline-item:before {
-            content: '';
-            position: absolute;
+        /* 3D Canvas */
+        #canvas-container {
+            position: fixed;
+            top: 0;
             left: 0;
-            top: 5px;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--accent-color);
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
         }
 
-        .timeline-item:after {
+        section,
+        nav,
+        footer {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glassmorphism Premium Enhanced */
+        .glass-premium {
+            background: rgba(15, 15, 30, 0.55);
+            backdrop-filter: blur(16px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 45, 32, 0.25);
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .glass-premium:hover {
+            border-color: #FF2D20;
+            box-shadow: 0 0 50px rgba(255, 45, 32, 0.25);
+            transform: translateY(-8px);
+            background: rgba(20, 20, 40, 0.7);
+        }
+
+        /* Navigation Enhanced */
+        .navbar {
+            background: rgba(5, 5, 10, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 45, 32, 0.4);
+            transition: all 0.3s;
+            padding: 1rem 0;
+        }
+
+        .navbar-scrolled {
+            background: rgba(5, 5, 10, 0.98);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+            border-bottom-color: #FF2D20;
+            padding: 0.7rem 0;
+        }
+
+        .navbar-brand {
+            font-size: 2rem;
+            background: var(--gradient-laravel);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            letter-spacing: -1px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px rgba(255, 45, 32, 0.3);
+            }
+
+            to {
+                text-shadow: 0 0 20px rgba(255, 45, 32, 0.6);
+            }
+        }
+
+        .nav-link {
+            position: relative;
+            margin: 0 1rem;
+            color: #a0aec0 !important;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: #FF2D20 !important;
+            text-shadow: 0 0 10px rgba(255, 45, 32, 0.5);
+        }
+
+        .nav-link::before {
             content: '';
             position: absolute;
-            left: 10px;
-            top: 25px;
-            bottom: -25px;
-            width: 2px;
-            background-color: var(--accent-color);
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: linear-gradient(90deg, #FF2D20, #00F0FF);
+            transition: 0.3s;
         }
 
-        .timeline-item:last-child:after {
-            display: none;
-        }
-
-        /* Skills */
-        .skill-item progress {
+        .nav-link:hover::before,
+        .nav-link.active::before {
             width: 100%;
-            height: 10px;
-            accent-color: var(--accent-color);
         }
 
-        /* Contact Form */
-        .form-control {
-            background-color: transparent;
-            border: 1px solid var(--accent-color);
+        /* Hero Section Enhanced */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-badge {
+            background: linear-gradient(135deg, rgba(255, 45, 32, 0.2), rgba(0, 240, 255, 0.2));
+            padding: 8px 24px;
+            border-radius: 50px;
+            display: inline-block;
+            border: 1px solid #FF2D20;
+            backdrop-filter: blur(10px);
+            animation: pulseBorder 2s infinite;
+        }
+
+        @keyframes pulseBorder {
+
+            0%,
+            100% {
+                border-color: #FF2D20;
+                box-shadow: 0 0 0 0 rgba(255, 45, 32, 0.4);
+            }
+
+            50% {
+                border-color: #00F0FF;
+                box-shadow: 0 0 0 8px rgba(0, 240, 255, 0);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #FF2D20, #FF6B6B, #00F0FF, #9D4EDD);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-size: 300% 300%;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .btn-laravel {
+            background: linear-gradient(45deg, #FF2D20, #FF6B6B);
+            border: none;
+            color: white;
+            font-weight: 700;
+            padding: 14px 36px;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(255, 45, 32, 0.4);
+        }
+
+        .btn-laravel:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 0 40px rgba(255, 45, 32, 0.8);
             color: white;
         }
 
-        .form-control:focus {
-            background-color: rgba(14, 136, 212, 0.1);
-            border-color: var(--accent-color);
+        .btn-outline-laravel {
+            border: 2px solid #FF2D20;
+            background: transparent;
+            color: #FF2D20;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .btn-outline-laravel:hover {
+            background: rgba(255, 45, 32, 0.15);
+            box-shadow: 0 0 25px rgba(255, 45, 32, 0.4);
+            transform: translateY(-3px);
+            color: #FF2D20;
+        }
+
+        /* Section Titles Enhanced */
+        .section-title {
+            font-size: 3.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FFFFFF, #FF2D20, #00F0FF, #9D4EDD);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            background-size: 300% 300%;
+            animation: gradientShift 5s ease infinite;
+        }
+
+        .title-decoration {
+            width: 120px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF2D20, #00F0FF, #9D4EDD, #FF2D20);
+            margin: 0 auto;
+            border-radius: 2px;
+            animation: widthPulse 2s infinite;
+        }
+
+        @keyframes widthPulse {
+
+            0%,
+            100% {
+                width: 100px;
+                opacity: 1;
+            }
+
+            50% {
+                width: 180px;
+                opacity: 0.7;
+            }
+        }
+
+        /* 3D Flip Cards Enhanced */
+        .flip-card {
+            background: transparent;
+            perspective: 1500px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 220px;
+            text-align: center;
+            transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transform-style: preserve-3d;
+            border-radius: 24px;
+        }
+
+        .flip-card:hover .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front,
+        .flip-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 24px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flip-front {
+            background: linear-gradient(135deg, rgba(255, 45, 32, 0.25), rgba(0, 240, 255, 0.15));
+            border: 1px solid rgba(255, 45, 32, 0.4);
+            backdrop-filter: blur(8px);
+        }
+
+        .flip-back {
+            background: linear-gradient(135deg, #FF2D20, #FF6B6B, #9D4EDD);
+            transform: rotateY(180deg);
             color: white;
-            box-shadow: 0 0 0 0.25rem rgba(14, 136, 212, 0.25);
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.2);
         }
 
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+        /* Project Cards Enhanced 3D */
+        .project-card-premium {
+            background: rgba(15, 15, 30, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 45, 32, 0.3);
+            transition: all 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
         }
 
-        /* Footer */
-        .footer {
-            border-bottom-left-radius: 75px;
-            border-bottom-right-radius: 45px;
+        .project-card-premium::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 45, 32, 0.2), transparent);
+            transition: 0.6s;
         }
 
-        .social-icon {
-            width: 40px;
-            height: 40px;
+        .project-card-premium:hover::after {
+            left: 100%;
+        }
+
+        .project-card-premium:hover {
+            transform: translateY(-15px) scale(1.02) rotateX(5deg);
+            border-color: #FF2D20;
+            box-shadow: 0 30px 50px rgba(255, 45, 32, 0.3);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .project-link-btn {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            text-decoration: none;
+        }
+
+        .github-link {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid #FF2D20;
+        }
+
+        .github-link:hover {
+            background: #FF2D20;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .demo-link {
+            background: linear-gradient(135deg, #FF2D20, #FF6B6B);
+            color: white;
+        }
+
+        .demo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 45, 32, 0.5);
+        }
+
+        /* Timeline Enhanced */
+        .timeline-item-3d {
+            position: relative;
+            padding: 20px 20px 20px 50px;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            border-left: 3px solid #FF2D20;
+            transition: 0.3s;
+        }
+
+        .timeline-item-3d:hover {
+            transform: translateX(12px);
+            background: linear-gradient(90deg, rgba(255, 45, 32, 0.15), transparent);
+            border-left-color: #00F0FF;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: -15px;
+            top: 20px;
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #FF2D20, #FF6B6B);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 15px #FF2D20;
+        }
+
+        /* Publication Card Enhanced */
+        .publication-card {
+            background: rgba(15, 15, 30, 0.7);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            border: 1px solid rgba(255, 45, 32, 0.4);
+            transition: all 0.4s ease;
+            height: 100%;
+        }
+
+        .publication-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: #00F0FF;
+            box-shadow: 0 20px 40px -10px rgba(0, 240, 255, 0.3);
+        }
+
+        /* Social Icons 3D Enhanced */
+        .social-icon-3d {
+            width: 55px;
+            height: 55px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
-            transition: all 0.3s;
+            background: rgba(255, 45, 32, 0.15);
+            border: 1px solid #FF2D20;
+            color: #FF2D20;
+            font-size: 1.5rem;
+            transition: all 0.5s;
+            margin: 0 5px;
+            text-decoration: none;
         }
 
-        .social-icon:hover {
-            background-color: var(--accent-color);
-            color: black;
-            transform: scale(1.1);
-        }
-
-        /* Back to top button */
-        .back-to-top {
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 10px;
-            background-color: black;
+        .social-icon-3d:hover {
+            transform: rotateY(360deg) scale(1.15);
+            background: linear-gradient(135deg, #FF2D20, #00F0FF);
             color: white;
-            transition: all 0.3s;
+            box-shadow: 0 0 25px #FF2D20;
+            border-color: transparent;
         }
 
-        .back-to-top:hover {
-            transform: translateY(-5px);
-            color: var(--accent-color);
+        /* Form Enhanced - Fixed placeholder visibility */
+        .form-laravel {
+            background: rgba(15, 15, 30, 0.6);
+            backdrop-filter: blur(16px);
+            border-radius: 32px;
+            padding: 2.5rem;
+            border: 1px solid rgba(255, 45, 32, 0.3);
         }
 
-        /* Responsive adjustments */
+        .form-control-laravel {
+            background: rgba(10, 10, 20, 0.85);
+            border: 1px solid rgba(255, 45, 32, 0.4);
+            border-radius: 20px;
+            padding: 12px 20px;
+            color: #ffffff;
+            transition: 0.3s;
+        }
+
+        .form-control-laravel::placeholder {
+            color: #c0c0d0;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .form-control-laravel:focus {
+            border-color: #FF2D20;
+            box-shadow: 0 0 25px rgba(255, 45, 32, 0.4);
+            background: rgba(15, 15, 30, 0.95);
+            color: white;
+            outline: none;
+            transform: scale(1.01);
+        }
+
+        .code-snippet {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 15px 20px;
+            border-radius: 20px;
+            border-left: 4px solid #FF2D20;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        @keyframes floatSlow {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .float-slow {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
         @media (max-width: 768px) {
-            .profile-image {
-                width: 150px;
-                height: 150px;
-            }
-
             .section-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
-            .hero-content {
-                text-align: center;
+            .cursor,
+            .cursor-follower {
+                display: none;
             }
 
-            .hero-buttons {
-                justify-content: center;
+            body {
+                cursor: auto;
+            }
+
+            .social-icon-3d {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .display-2 {
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 
 <body>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    <div id="canvas-container"></div>
+
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary-custom fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Mohsin Malik</a>
+            <a class="navbar-brand" href="#">⚡ Mohsin<span style="color: #FF2D20;">.dev</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#projects">Projects</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#journey">Journey</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#skills">Skills</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#publications">Publications</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#journey">Journey</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="bg-primary-custom py-5" style="padding-top: 80px !important;">
+    <section id="home" class="hero-section min-vh-100 d-flex align-items-center">
         <div class="container">
             <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h1 class="display-4 fw-bold mb-3">Hi, I'm Mohsin Malik</h1>
-                    <h3 class="text-accent mb-4">Software Developer & AI Developer</h3>
-                    <p class="lead mb-4">Passionate about creating innovative solutions through code and artificial
-                        intelligence. Specializing in full-stack development and machine learning applications.</p>
-
-                    <div class="d-flex flex-wrap gap-3 mb-4">
-                        <a href="#contact" class="btn btn-accent btn-lg">Hire Me</a>
-                        <a href="#contact" class="btn btn-outline-accent btn-lg">Let's Talk</a>
+                <div class="col-lg-7" data-aos="fade-right">
+                    <div class="hero-badge mb-4">
+                        <i class="fab fa-laravel me-2"></i> Full Stack Developer & AI Engineer
                     </div>
-
+                    <h1 class="display-2 fw-bold mb-3">Code. Create.<br><span class="gradient-text">Innovate.</span>
+                    </h1>
+                    <div class="code-snippet mb-4">
+                        <span class="text-danger">$</span> <span id="typed-text" style="color: #00F0FF;"></span>
+                    </div>
+                    <p class="lead mb-4 opacity-75">Full Stack Developer & AI Specialist with expertise in Laravel,
+                        Python, automation, and model training. I build scalable web apps and intelligent AI systems
+                        that solve real-world problems.</p>
+                    <div class="d-flex flex-wrap gap-3 mb-4">
+                        <a href="#contact" class="btn btn-laravel"><i class="fab fa-laravel me-2"></i>Hire Me</a>
+                        <a href="#projects" class="btn btn-outline-laravel"><i class="fas fa-eye me-2"></i>View Work</a>
+                    </div>
                     <div class="d-flex gap-3">
                         <a href="https://www.linkedin.com/in/mohsin-malik-ema567/" target="_blank"
-                            class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://github.com/dashboard" target="_blank" class="social-icon"><i
+                            class="social-icon-3d"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/Alpha125-mohsin" target="_blank" class="social-icon-3d"><i
                                 class="fab fa-github"></i></a>
-
                     </div>
                 </div>
-                <div class="col-lg-6 mt-5 mt-lg-0">
-                    <img src="i3.png" alt="Mohsin Malik" class="hero-image img-fluid">
+                <div class="col-lg-5 text-center" data-aos="fade-left">
+                    <div class="position-relative">
+                        <img src="i3.png" alt="Mohsin Malik" class="img-fluid float-slow"
+                            style="border-radius: 35% 65% 70% 30% / 35% 35% 65% 65%; box-shadow: 0 0 60px rgba(255, 45, 32, 0.6); animation: float 4s ease-in-out infinite;">
+                        <div class="position-absolute bottom-0 end-0 glass-premium p-3">
+                            <i class="fab fa-laravel text-danger"></i> <span class="fw-bold">Laravel & AI Expert</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="bg-secondary-custom py-5">
-        <div class="container text-center">
-            <h2 class="section-title">About <span class="text-accent">Me</span></h2>
-
-            <div class="profile-image">
-                <img src="i3.png" alt="Mohsin Malik" class="img-fluid">
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Full Stack & AI Developer</h2>
+                <div class="title-decoration"></div>
             </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-premium p-5" data-aos="zoom-in">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 text-center">
+                                <img src="i3.png" alt="profile"
+                                    style="width: 180px; height: 180px; border-radius: 50%; border: 3px solid #FF2D20; box-shadow: 0 0 40px rgba(255, 45, 32, 0.6);">
+                            </div>
+                            <div class="col-md-8">
+                                <h3 class="mb-3">Mohsin Malik <span style="color: #FF2D20;">✦ Full Stack & AI
+                                        Developer</span></h3>
+                                <p class="lead">I build robust web applications with Laravel and create intelligent AI
+                                    solutions using Python. My expertise spans full-stack development, automation, and
+                                    machine learning model training — delivering end-to-end products that drive business
+                                    growth.</p>
+                                <div class="row mt-4">
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="display-4 fw-bold text-danger" data-count="45">0</div>
+                                            <div>Projects Delivered</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="display-4 fw-bold text-danger" data-count="28">0</div>
+                                            <div>Happy Clients</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <div class="text-center">
+                                            <div class="display-4 fw-bold text-danger" data-count="15">0</div>
+                                            <div>AI Models</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            <h3 class="mb-3">Software Developer & AI Developer</h3>
-            <p class="lead mx-auto" style="max-width: 700px;">
-                With over 5 years of experience in software development and artificial intelligence, I specialize in
-                creating efficient, scalable solutions. My expertise spans across web development, machine learning
-                models, and cloud computing.
-            </p>
-            <p class="mx-auto" style="max-width: 700px;">
-                I'm passionate about solving complex problems and continuously learning new technologies. When I'm not
-                coding, you can find me contributing to open-source projects or mentoring aspiring developers.
-            </p>
-
-            <a href="#journey" class="btn btn-accent mt-3">Learn More</a>
+    <!-- Skills Section - Expanded with MySQL, JavaScript, Flutter, MS Office, WordPress -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Technical Arsenal</h2>
+                <div class="title-decoration"></div>
+                <p class="mt-3 opacity-75">Laravel • PHP • Python • MySQL • JavaScript • Flutter • MS Office • WordPress
+                    • AI/ML • Automation</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 col-lg-3" data-aos="flip-left">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-front"><i class="fab fa-laravel fa-3x mb-3" style="color: #FF2D20;"></i>
+                                <h4>Laravel</h4>
+                                <p>90%</p>
+                            </div>
+                            <div class="flip-back"><i class="fas fa-star fa-2x mb-2"></i>
+                                <h5>Expert</h5>
+                                <p>Eloquent, Queues, APIs, Livewire</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="flip-left" data-aos-delay="100">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-front"><i class="fab fa-php fa-3x mb-3" style="color: #8892BF;"></i>
+                                <h4>PHP</h4>
+                                <p>95%</p>
+                            </div>
+                            <div class="flip-back"><i class="fas fa-code fa-2x mb-2"></i>
+                                <h5>Advanced</h5>
+                                <p>OOP, Design Patterns, PHP 8+</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="flip-left" data-aos-delay="200">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-front"><i class="fab fa-python fa-3x mb-3" style="color: #3776AB;"></i>
+                                <h4>Python/AI</h4>
+                                <p>88%</p>
+                            </div>
+                            <div class="flip-back"><i class="fas fa-robot fa-2x mb-2"></i>
+                                <h5>AI/ML Expert</h5>
+                                <p>TensorFlow, Model Training, Automation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="flip-left" data-aos-delay="300">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-front"><i class="fas fa-database fa-3x mb-3" style="color: #00758F;"></i>
+                                <h4>MySQL</h4>
+                                <p>92%</p>
+                            </div>
+                            <div class="flip-back"><i class="fas fa-table fa-2x mb-2"></i>
+                                <h5>Expert</h5>
+                                <p>Complex Queries, Optimization, Stored Procedures</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="flip-left" data-aos-delay="400">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-front"><i class="fab fa-js fa-3x mb-3" style="color: #F7DF1E;"></i>
+                                <h4>JavaScript</h4>
+                                <p>85%</p>
+                            </div>
+                            <div class="flip-back"><i class="fas fa-globe fa-2x mb-2"></i>
+                                <h5>Advanced</h5>
+                                <p>ES6+, AJAX, Fetch API, DOM Manipulation</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="flip-left" data-aos-delay="500">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-front"><i class="fas fa-mobile-alt fa-3x mb-3" style="color: #02569B;"></i>
+                                <h4>Flutter</h4>
+                                <p>75%</p>
+                            </div>
+                            <div class="flip-back"><i class="fas fa-mobile-alt fa-2x mb-2"></i>
+                                <h5>Mobile Dev</h5>
+                                <p>Cross-platform Apps, UI Design, Firebase Integration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="flip-left" data-aos-delay="600">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-front"><i class="fas fa-file-alt fa-3x mb-3" style="color: #1E6F3F;"></i>
+                                <h4>MS Office</h4>
+                                <p>95%</p>
+                            </div>
+                            <div class="flip-back"><i class="fas fa-chart-line fa-2x mb-2"></i>
+                                <h5>Productivity</h5>
+                                <p>Excel, Word, PowerPoint, Data Analysis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-3" data-aos="flip-left" data-aos-delay="700">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-front"><i class="fab fa-wordpress fa-3x mb-3" style="color: #21759B;"></i>
+                                <h4>WordPress</h4>
+                                <p>80%</p>
+                            </div>
+                            <div class="flip-back"><i class="fas fa-cogs fa-2x mb-2"></i>
+                                <h5>CMS Expert</h5>
+                                <p>Theme Customization, Plugin Integration, WooCommerce</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="bg-primary-custom py-5">
-        <div class="container ">
-            <h2 class="section-title text-center">My <span class="text-accent">Projects</span></h2>
-
-            <div class="row g-4 ">
-                <!-- Project 1 -->
-                <div class="col-md-4">
-                    <div class="project-card">
-                        <img src="first.png" class="card-img-top project-img" alt="E-commerce Website">
-                        <div class="card-body">
-                            <h5 class="card-title">E-commerce Platform</h5>
-                            <p class="card-text">
-                            <p class="card-text">
-                                A responsive eCommerce frontend built with Next.js, featuring product listings and a
-                                user-friendly cart interface.
-                            </p>
-                            </p>
-                            <div class="d-flex gap-2">
-                                <a href="https://github.com/Alpha125-mohsin/figmawebsite" target="_blank"
-                                    class="btn btn-sm btn-outline-accent">GitHub</a>
-                                <a href="https://figma-ecommerce-site.vercel.app/" target="_blank"
-                                    class="btn btn-sm btn-accent">Live
-                                    Demo</a>
-                            </div>
+    <section id="projects" class="py-5" style="background: linear-gradient(180deg, #050508 0%, #0a0a15 100%);">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Featured <span style="color: #FF2D20;">Projects</span></h2>
+                <div class="title-decoration"></div>
+                <p class="mt-3">Full-stack applications & AI solutions — click to explore</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in">
+                    <div class="project-card-premium"><img src="first.png" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>E-commerce Platform</h5>
+                            <p class="small">A simple and modern e-commerce frontend built with Next.js, featuring a
+                                clean responsive UI and smooth user experience across all devices.</p>
+                            <div class="project-links"><a href="https://github.com/Alpha125-mohsin/figmawebsite"
+                                    target="_blank" class="project-link-btn github-link"><i class="fab fa-github"></i>
+                                    GitHub</a><a href="https://figma-ecommerce-site.vercel.app/" target="_blank"
+                                    class="project-link-btn demo-link"><i class="fas fa-external-link-alt"></i> Live
+                                    Demo</a></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="col-md-4">
-                    <div class="project-card">
-                        <img src="two.png" class="card-img-top project-img" alt="AI Chatbot">
-                        <div class="card-body">
-                            <h5 class="card-title">Mental & Physical Health Platform</h5>
-                            <p class="card-text">
-                                A collaborative health companion app developed in Next.js. This project is a
-                                work-in-progress, aiming to provide tools for mental wellness and physical health
-                                tracking.
-                            </p>
-                            <div class="d-flex gap-2">
-                                <a href="https://github.com/Alpha125-mohsin/rocky_companionhealth" target="_blank"
-                                    class="btn btn-sm btn-outline-accent">GitHub</a>
-                                <a href="https://companionhealth.life/" target="_blank"
-                                    class="btn btn-sm btn-accent">Live Demo</a>
-                            </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="project-card-premium"><img src="two.png" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>Healthcare Portal</h5>
+                            <p class="small">A modern telemedicine platform connecting patients with doctors remotely
+                                through secure online consultations and AI-powered symptom checking.</p>
+                            <div class="project-links"><a
+                                    href="https://github.com/Alpha125-mohsin/rocky_companionhealth" target="_blank"
+                                    class="project-link-btn github-link"><i class="fab fa-github"></i> GitHub</a><a
+                                    href="https://companionhealth.life/" target="_blank"
+                                    class="project-link-btn demo-link"><i class="fas fa-external-link-alt"></i> Live
+                                    Demo</a></div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 3 -->
-                <div class="col-md-4">
-                    <div class="project-card">
-                        <img src="three.png" class="card-img-top project-img" alt="Data Dashboard">
-                        <div class="card-body">
-                            <h5 class="card-title">Automatic Fabric Detection system (CNN)</h5>
-                            <p class="card-text">
-                                An intelligent fabric detection system built using (CNNs)
-                                for pattern recognition and classification.
-                                The system includes an interactive frontend developed in Flutter, and a backend powered
-                                by Python-based machine learning.
-
-                            </p>
-                            <div class="d-flex gap-2">
-                                <a href="https://drive.google.com/drive/folders/1u1e6KKejKxZu0K7u5LSZVN6PEoldJwmR?usp=sharing"
-                                    target="_blank" class="btn btn-sm btn-outline-accent">Drive</a>
-                                <a href="https://drive.google.com/file/d/1MydI1GfufzOzm4Kwa5r7EXbTq9Q5ocjO/view?usp=sharing"
-                                    target="_blank" class="btn btn-sm btn-accent">Live Demo</a>
-                            </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="project-card-premium"><img src="three.png" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>Fabric Defect Detection AI</h5>
+                            <p class="small">A smart textile inspection system using AI and computer vision to
+                                automatically detect fabric defects in real time.</p>
+                            <div class="project-links"><a
+                                    href="https://drive.google.com/drive/folders/1u1e6KKejKxZu0K7u5LSZVN6PEoldJwmR?usp=sharing"
+                                    target="_blank" class="project-link-btn github-link"><i
+                                        class="fab fa-google-drive"></i> Drive</a><a
+                                    href="https://drive.google.com/file/d/1MydI1GfufzOzm4Kwa5r7EXbTq9Q5ocjO/view?usp=sharing"
+                                    target="_blank" class="project-link-btn demo-link"><i class="fas fa-video"></i> Demo
+                                    Video</a></div>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="project-card">
-                        <img src="four.jpg" class="card-img-top project-img" alt="Data Dashboard">
-                        <div class="card-body">
-                            <h5 class="card-title">Sport prediction</h5>
-                            <p class="card-text">
-                            <p class="card-text">
-                                A smart sports prediction app developed using Flutter for the frontend and Python for
-                                machine learning.
-                                It analyzes historical match data to predict outcomes, offering users real-time insights
-                                and intuitive visualizations.
-                            </p>
-
-                            </p>
-                            <div class="d-flex gap-2">
-                                <a href="https://drive.google.com/drive/folders/1ZbQw6KoFyKwnbYCYw-nbnfbDnv354dVO?usp=sharing"
-                                    target="_blank" class="btn btn-sm btn-outline-accent">Drive</a>
-                                <a href="https://drive.google.com/file/d/1capIQYfpn60KHTTJqVlTR1AuV1rqhxnA/view?usp=sharing"
-                                    target="_blank" class="btn btn-sm btn-accent">Live Demo</a>
-                            </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="project-card-premium"><img src="four.jpg" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>Sports Prediction AI</h5>
+                            <p class="small">ML model predicting match outcomes and helping coaches decide which players
+                                should play based on real-time analytics.</p>
+                            <div class="project-links"><a
+                                    href="https://drive.google.com/drive/folders/1ZbQw6KoFyKwnbYCYw-nbnfbDnv354dVO?usp=sharing"
+                                    target="_blank" class="project-link-btn github-link"><i
+                                        class="fab fa-google-drive"></i> Drive</a><a
+                                    href="https://drive.google.com/file/d/1capIQYfpn60KHTTJqVlTR1AuV1rqhxnA/view?usp=sharing"
+                                    target="_blank" class="project-link-btn demo-link"><i class="fas fa-chart-line"></i>
+                                    Demo</a></div>
                         </div>
                     </div>
                 </div>
-                
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="project-card-premium"><img src="cour.png" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>Courier Management System</h5>
+                            <p class="small">Laravel-based system with Admin, Agent, and User panels. Features include
+                                shipment creation, tracking, SMS notifications, and XLSX reports.</p>
+                            <div class="project-links"><a
+                                    href="https://www.upwork.com/freelancers/~012390560159712632?p=2037857624818667520"
+                                    target="_blank" class="project-link-btn demo-link"><i
+                                        class="fas fa-external-link-alt"></i>
+                                    Demo</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="500">
+                    <div class="project-card-premium"><img src="covid.png" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>Healthcare Management System</h5>
+                            <p class="small">COVID-19 Test & Vaccination Management System with Admin, Hospital, and
+                                Patient panels for appointments and reports.</p>
+                            <div class="project-links"><a
+                                    href="https://www.upwork.com/freelancers/~012390560159712632?p=2037834731375976448"
+                                    target="_blank" class="project-link-btn demo-link"><i
+                                        class="fas fa-external-link-alt"></i>
+                                    Demo</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="600">
+                    <div class="project-card-premium"><img src="zag.png" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>Zagins – Digital Solutions</h5>
+                            <p class="small">Modern business website offering professional digital solutions, web
+                                development, branding, and innovative online services.</p>
+                            <div class="project-links"><a href="https://oxensoftwares.com/projects/zaginsWebsite/"
+                                    target="_blank" class="project-link-btn demo-link"><i
+                                        class="fas fa-external-link-alt"></i>
+                                    Demo</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="project-card-premium"><img src="osman.png" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>Usman Website – Portfolio</h5>
+                            <p class="small">Modern responsive platform showcasing professional services, portfolio
+                                projects, and digital solutions.</p>
+                            <div class="project-links"><a href="https://oxensoftwares.com/projects/usmanWebsite/index"
+                                    target="_blank" class="project-link-btn demo-link"><i
+                                        class="fas fa-external-link-alt"></i>
+                                    Demo</a></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="700">
+                    <div class="project-card-premium"><img src="em.png" class="w-100"
+                            style="height: 230px; object-fit: cover;">
+                        <div class="p-4">
+                            <h5>Embroidery Design Website (WordPress)</h5>
+                            <p class="small">A WordPress-based embroidery design platform for showcasing, managing, and
+                                selling embroidery patterns with a smooth browsing, download, and purchase experience.
+                            </p>
+                            <div class="project-links"><a href="https://embroiderydesign.online/" target="_blank"
+                                    class="project-link-btn demo-link"><i class="fas fa-external-link-alt"></i>
+                                    Demo</a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Publications Section -->
+    <section id="publications" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">📚 Publications</h2>
+                <div class="title-decoration"></div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-10" data-aos="zoom-in-up">
+                    <div class="publication-card p-4 p-md-5">
+                        <div class="d-flex flex-wrap gap-3 mb-3">
+                            <div class="publication-badge"><i class="fas fa-file-alt"></i> Journal Article (2025)</div>
+                            <div class="publication-badge" style="background: #0f0f1a; border: 1px solid #00F0FF;"><i
+                                    class="fas fa-microchip"></i> Computer Vision</div>
+                        </div>
+                        <h3 class="display-6 fw-bold mb-3"
+                            style="background: linear-gradient(135deg, #fff, #00F0FF); background-clip: text; -webkit-background-clip: text; color: transparent;">
+                            Applications of AI in Computer Vision for Fabric Fault Detection</h3>
+                        <p class="pub-journal mb-2"><i class="fas fa-university me-2"></i> Sir Syed University Research
+                            Journal (SSURJ) · Volume 15, Issue 1</p>
+                        <p class="mb-4"><i class="fas fa-calendar-alt me-2 text-danger"></i> Published: March 2025 ·
+                            DOI: 10.36785/ssurj.683</p>
+                        <a href="https://sirsyeduniversity.edu.pk/ssurj/rj/index.php/ssurj/article/view/683"
+                            target="_blank" class="btn btn-laravel px-4"><i class="fas fa-external-link-alt me-2"></i>
+                            Read Full Article</a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Journey Section -->
-    <section id="journey" class="bg-secondary-custom py-5">
+    <section id="journey" class="py-5">
         <div class="container">
-            <h2 class="section-title text-center">My <span class="text-accent">Journey</span></h2>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <h3 class="text-center mb-4">Education</h3>
-
-
-                    <div class="timeline-item">
-                        <h5 class="text-accent">2020 - 2024</h5>
-                        <h4>Bachelor in Software Engineering </h4>
-                        <p> Specialized in web, mobile, and AI development. Worked on academic projects using Flutter,
-                            Python, and React.
-                        </p>
-                    </div>
-                    <div class="timeline-item">
-                        <h5 class="text-accent">2018 – 2020</h5>
-                        <h4>Intermediate in Computer Science – Karachi</h4>
-                        <p>
-                            Built a strong foundation in programming, databases, and computer science concepts.
-                        </p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h5 class="text-accent">2017 - 2018</h5>
-                        <h4>Advanced Diploma in Web Development</h4>
-                        <p>Learned fundamentals of web technologies including HTML, CSS, JavaScript, and PHP.</p>
-                    </div>
-                </div>
-
-                <div class="col-lg-6">
-                    <h3 class="text-center mb-4">Experience</h3>
-
-                    <div class="timeline-item">
-                        <h5 class="text-accent">2021 - Present</h5>
-                        <h4>Senior AI Developer</h4>
-                        <p>Leading a team to develop machine learning models for predictive analytics in healthcare.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h5 class="text-accent">2018 - 2021</h5>
-                        <h4>Full-stack Developer</h4>
-                        <p>Built and maintained enterprise-level web applications using React, Node.js, and MongoDB.</p>
-                    </div>
-
-                    <div class="timeline-item">
-                        <h5 class="text-accent">2016 - 2018</h5>
-                        <h4>Junior Web Developer</h4>
-                        <p>Developed responsive websites and web applications for small businesses and startups.</p>
-                    </div>
-                </div>
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Professional Journey</h2>
+                <div class="title-decoration"></div>
             </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="bg-primary-custom py-5">
-        <div class="container">
-            <h2 class="section-title text-center">My <span class="text-accent">Skills</span></h2>
-
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="p-4 border border-accent rounded-3 h-100">
-                        <h3 class="text-center mb-4">Technical Skills</h3>
-
-                        <div class="skill-item mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <h5>HTML/CSS/Java script</h5>
-                                <span>90%</span>
-                            </div>
-                            <progress class="w-100" value="90" max="100"></progress>
-                        </div>
-
-                        <div class="skill-item mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <h5>PHP</h5>
-                                <span>90%</span>
-                            </div>
-                            <progress class="w-100" value="90" max="100"></progress>
-                        </div>
-
-                        <div class="skill-item mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <h5>Python</h5>
-                                <span>95%</span>
-                            </div>
-                            <progress class="w-100" value="95" max="100"></progress>
-                        </div>
-
-                        <div class="skill-item mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <h5>Dart</h5>
-                                <span>80%</span>
-                            </div>
-                            <progress class="w-100" value="80" max="100"></progress>
+            <div class="row">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <div class="glass-premium p-4">
+                        <h3 class="mb-4"><i class="fas fa-graduation-cap me-2 text-danger"></i>Education</h3>
+                        <div class="timeline-item-3d">
+                            <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <h5 class="text-danger">2020 - 2024</h5>
+                            <h5>B.S. Software Engineering</h5>
+                            <p>Major in AI & Systems, Minor in Web Technologies. GPA: 3.8/4.0</p>
                         </div>
                     </div>
                 </div>
-
-                <div class="col-md-6">
-                    <div class="p-4 border border-accent rounded-3 h-100">
-                        <h3 class="text-center mb-4">Professional Skills</h3>
-
-                        <div class="skill-item mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <h5>Problem Solving</h5>
-                                <span>95%</span>
-                            </div>
-                            <progress class="w-100" value="95" max="100"></progress>
-                        </div>
-
-                        <div class="skill-item mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <h5>Teamwork</h5>
-                                <span>90%</span>
-                            </div>
-                            <progress class="w-100" value="90" max="100"></progress>
-                        </div>
-
-                        <div class="skill-item mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <h5>Communication</h5>
-                                <span>85%</span>
-                            </div>
-                            <progress class="w-100" value="85" max="100"></progress>
-                        </div>
-
-                        <div class="skill-item mb-3">
-                            <div class="d-flex justify-content-between mb-1">
-                                <h5>Project Management</h5>
-                                <span>80%</span>
-                            </div>
-                            <progress class="w-100" value="80" max="100"></progress>
+                <div class="col-lg-6" data-aos="fade-left">
+                    <div class="glass-premium p-4">
+                        <h3 class="mb-4"><i class="fas fa-briefcase me-2 text-danger"></i>Experience</h3>
+                        <div class="timeline-item-3d">
+                            <div class="timeline-icon"><i class="fab fa-laravel"></i></div>
+                            <h5 class="text-danger">2021 - Present</h5>
+                            <h5>Full Stack & AI Developer</h5>
+                            <p>Building web applications with Laravel, training ML models, and creating automation
+                                solutions for diverse clients worldwide.</p>
                         </div>
                     </div>
                 </div>
@@ -559,170 +1066,142 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="bg-secondary-custom py-5">
+    <section id="contact" class="py-5" style="background: linear-gradient(0deg, #050508 0%, #0a0a15 100%);">
         <div class="container">
-            <h2 class="section-title text-center">Contact <span class="text-accent">Me!</span></h2>
-
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Let's Build Together</h2>
+                <div class="title-decoration"></div>
+            </div>
             <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <form id="contact-form" class="needs-validation" novalidate>
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="name" name="from_name"
-                                    placeholder="Full Name" required>
-                                <div class="invalid-feedback">
-                                    Please provide your name.
+                <div class="col-lg-8" data-aos="flip-up">
+                    <div class="form-laravel">
+                        <form id="contact-form">
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6"><input type="text" name="from_name"
+                                        class="form-control form-control-laravel" placeholder="Full Name *" required>
                                 </div>
+                                <div class="col-md-6"><input type="email" name="from_email"
+                                        class="form-control form-control-laravel" placeholder="Email Address *"
+                                        required></div>
                             </div>
-                            <div class="col-md-6">
-                                <input type="email" class="form-control" id="email" name="from_email"
-                                    placeholder="Email Address" required>
-                                <div class="invalid-feedback">
-                                    Please provide a valid email.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row g-3 mb-3">
-                            <div class="col-md-6">
-                                <input type="tel" class="form-control" id="phone" name="phone"
-                                    placeholder="Mobile Number">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" id="subject" name="subject"
-                                    placeholder="Email Subject" required>
-                                <div class="invalid-feedback">
-                                    Please provide a subject.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="mb-3">
-                            <textarea class="form-control" id="message" name="message" rows="5"
-                                placeholder="Your Message" required></textarea>
-                            <div class="invalid-feedback">
-                                Please write your message.
-                            </div>
-                        </div>
-
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-accent btn-lg px-4">Send Message</button>
-                        </div>
-
-                        <div id="form-status" class="mt-3 text-center"></div>
-                    </form>
+                            <div class="mb-3"><input type="text" name="subject"
+                                    class="form-control form-control-laravel" placeholder="Subject *" required></div>
+                            <div class="mb-4"><textarea name="message" rows="5"
+                                    class="form-control form-control-laravel" placeholder="Tell me about your project *"
+                                    required></textarea></div>
+                            <div class="text-center"><button type="submit" class="btn btn-laravel px-5 py-3"><i
+                                        class="fab fa-laravel me-2"></i>Send Message</button></div>
+                            <div id="form-status" class="mt-3 text-center"></div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer bg-secondary-custom py-3">
-        <div class="container">
-            <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
-                <div class="mb-3 mb-md-0">
-                    <p class="mb-0">&copy; 2024 Mohsin Malik. All rights reserved.</p>
-                </div>
-                <div class="d-flex gap-3">
-
-                    <a href="https://www.linkedin.com/in/mohsin-malik-ema567/" target="_blank" class="social-icon"><i
-                            class="fab fa-linkedin-in"></i></a>
-                    <a href="https://github.com/dashboard" target="_blank" class="social-icon"><i
-                            class="fab fa-github"></i></a>
-
-                </div>
-                <a href="#home" class="back-to-top mt-3 mt-md-0">
-                    <i class="fas fa-arrow-up"></i>
-                </a>
+    <footer class="py-4" style="background: #020205; border-top: 1px solid #FF2D20;">
+        <div class="container d-flex flex-wrap justify-content-between align-items-center">
+            <div><i class="fab fa-laravel text-danger me-2"></i>© 2026 Mohsin Malik | Full Stack & AI Developer</div>
+            <div class="d-flex gap-2">
+                <a href="https://github.com/Alpha125-mohsin" target="_blank" class="social-icon-3d"
+                    style="width:40px;height:40px;"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/mohsin-malik-ema567/" target="_blank" class="social-icon-3d"
+                    style="width:40px;height:40px;"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#home" class="social-icon-3d" style="width:40px;height:40px;"><i
+                        class="fas fa-arrow-up"></i></a>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script type="module">
+        import * as THREE from 'three';
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setClearColor(0x050508, 0);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-    <script>
-        // Initialize EmailJS
-        (function () {
-            emailjs.init("s3-CTcRvNmQWUEP9F");
-        })();
+        const particleCount = 5000;
+        const particlesGeometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const colors = new Float32Array(particleCount * 3);
+        for (let i = 0; i < particleCount; i++) {
+            positions[i * 3] = (Math.random() - 0.5) * 250;
+            positions[i * 3 + 1] = (Math.random() - 0.5) * 150;
+            positions[i * 3 + 2] = (Math.random() - 0.5) * 120;
+            const colorChoice = Math.random();
+            const color = colorChoice > 0.7 ? new THREE.Color(0xFF2D20) : (colorChoice > 0.35 ? new THREE.Color(0x00F0FF) : new THREE.Color(0x9D4EDD));
+            colors[i * 3] = color.r; colors[i * 3 + 1] = color.g; colors[i * 3 + 2] = color.b;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        const particleMaterial = new THREE.PointsMaterial({ size: 0.12, vertexColors: true, transparent: true, opacity: 0.5, blending: THREE.AdditiveBlending });
+        const particleSystem = new THREE.Points(particlesGeometry, particleMaterial);
+        scene.add(particleSystem);
 
-        // Contact Form Submission
-        document.getElementById('contact-form').addEventListener('submit', function (event) {
-            event.preventDefault();
+        const knotGeometry = new THREE.TorusKnotGeometry(1.2, 0.3, 128, 16, 3, 4);
+        const knotMaterial = new THREE.MeshStandardMaterial({ color: 0xFF2D20, emissive: 0x441111, metalness: 0.9, roughness: 0.3 });
+        const knot = new THREE.Mesh(knotGeometry, knotMaterial);
+        knot.position.set(5, 3, -15);
+        scene.add(knot);
 
-            const form = this;
-            const status = document.getElementById('form-status');
+        const cubes = [];
+        for (let i = 0; i < 60; i++) {
+            const cube = new THREE.Mesh(new THREE.BoxGeometry(0.6, 0.6, 0.6), new THREE.MeshStandardMaterial({ color: Math.random() > 0.5 ? 0xFF2D20 : 0x00F0FF, emissive: 0x220000, metalness: 0.7 }));
+            cube.position.set((Math.random() - 0.5) * 90, (Math.random() - 0.5) * 50, (Math.random() - 0.5) * 70 - 20);
+            cube.scale.setScalar(Math.random() * 0.5 + 0.2);
+            scene.add(cube); cubes.push(cube);
+        }
 
-            // Validate form
-            if (!form.checkValidity()) {
-                event.stopPropagation();
-                form.classList.add('was-validated');
-                return;
-            }
+        scene.add(new THREE.AmbientLight(0x303030));
+        const light = new THREE.DirectionalLight(0xffffff, 1.2);
+        light.position.set(2, 3, 4);
+        scene.add(light);
+        const backLight = new THREE.PointLight(0xFF2D20, 0.5);
+        backLight.position.set(-3, 2, -5);
+        scene.add(backLight);
 
-            // Show loading state
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
-            submitBtn.disabled = true;
+        camera.position.z = 38;
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => { mouseX = (e.clientX / window.innerWidth - 0.5) * 2; mouseY = (e.clientY / window.innerHeight - 0.5) * 2; });
 
-            // EmailJS parameters
-            const serviceID = 'service_auknn99';
-            const templateID = 'template_ki2ehku';
-
-            // Send email
-            emailjs.sendForm(serviceID, templateID, form)
-                .then(function (response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    status.innerHTML = '<div class="alert alert-success">Message sent successfully! I will get back to you soon.</div>';
-                    form.reset();
-                    form.classList.remove('was-validated');
-                }, function (error) {
-                    console.log('FAILED...', error);
-                    status.innerHTML = '<div class="alert alert-danger">Failed to send message. Please try again later or contact me directly at mmohsin743mm@gmail.com</div>';
-                })
-                .finally(function () {
-                    submitBtn.innerHTML = originalBtnText;
-                    submitBtn.disabled = false;
-
-                    // Scroll to status message
-                    status.scrollIntoView({ behavior: 'smooth' });
-                });
-        });
-
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    // Close mobile menu if open
-                    const navbarCollapse = document.querySelector('.navbar-collapse');
-                    if (navbarCollapse.classList.contains('show')) {
-                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-                        bsCollapse.hide();
-                    }
-
-                    // Scroll to target
-                    window.scrollTo({
-                        top: target.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            time += 0.008;
+            particleSystem.rotation.y += 0.001;
+            particleSystem.rotation.x = Math.sin(time * 0.2) * 0.1;
+            knot.rotation.x += 0.01;
+            knot.rotation.y += 0.015;
+            knot.rotation.z += 0.005;
+            cubes.forEach((c, idx) => {
+                c.rotation.x += 0.01;
+                c.rotation.y += 0.012;
+                c.position.y += Math.sin(time + idx) * 0.002;
             });
-        });
-
-        // Navbar background change on scroll
-        window.addEventListener('scroll', function () {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
-        });
+            camera.position.x += (mouseX * 2 - camera.position.x) * 0.03;
+            camera.position.y += (-mouseY * 1.5 - camera.position.y) * 0.03;
+            camera.lookAt(scene.position);
+            renderer.render(scene, camera);
+        }
+        animate();
+        window.addEventListener('resize', () => { camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
+    </script>
+    <script>
+        AOS.init({ duration: 1000, once: false, mirror: true });
+        new Typed('#typed-text', { strings: ['composer require innovation', 'php artisan make:magic', 'python train_model.py', 'npm run dev', 'Laravel + AI = ❤️'], typeSpeed: 50, backSpeed: 30, loop: true, cursorChar: '█' });
+        document.querySelectorAll('[data-count]').forEach(counter => { const update = () => { const target = parseInt(counter.getAttribute('data-count')), current = parseInt(counter.innerText), inc = target / 40; if (current < target) { counter.innerText = Math.ceil(current + inc); setTimeout(update, 25); } else counter.innerText = target; }; const observer = new IntersectionObserver((entries) => { if (entries[0].isIntersecting) { update(); observer.disconnect(); } }, { threshold: 0.3 }); observer.observe(counter); });
+        const cursor = document.querySelector('.cursor'), follower = document.querySelector('.cursor-follower');
+        document.addEventListener('mousemove', (e) => { if (cursor && follower) { cursor.style.transform = `translate(${e.clientX - 4}px, ${e.clientY - 4}px)`; follower.style.transform = `translate(${e.clientX - 22}px, ${e.clientY - 22}px)`; } });
+        document.querySelectorAll('a,button,.btn,.flip-card').forEach(el => { el.addEventListener('mouseenter', () => { if (follower) { follower.style.transform = 'scale(1.8)'; follower.style.borderColor = '#00F0FF'; follower.style.backgroundColor = 'rgba(0,240,255,0.1)'; } }); el.addEventListener('mouseleave', () => { if (follower) { follower.style.transform = 'scale(1)'; follower.style.borderColor = 'rgba(255, 45, 32, 0.6)'; follower.style.backgroundColor = 'transparent'; } }); });
+        window.addEventListener('scroll', () => document.querySelector('.navbar').classList.toggle('navbar-scrolled', window.scrollY > 50));
+        emailjs.init("s3-CTcRvNmQWUEP9F");
+        document.getElementById('contact-form')?.addEventListener('submit', function (e) { e.preventDefault(); const btn = this.querySelector('button[type="submit"]'), orig = btn.innerHTML; btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Sending...'; btn.disabled = true; emailjs.sendForm('service_auknn99', 'template_ki2ehku', this).then(() => { document.getElementById('form-status').innerHTML = '<div class="alert alert-success">✨ Message sent! I\'ll reply within 24 hours.</div>'; this.reset(); }).catch(() => { document.getElementById('form-status').innerHTML = '<div class="alert alert-danger">⚠️ Error. Try direct email: mmohsin743mm@gmail.com</div>'; }).finally(() => { btn.innerHTML = orig; btn.disabled = false; }); });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function (e) { const target = document.querySelector(this.getAttribute('href')); if (target) { e.preventDefault(); window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' }); } }); });
+        const style = document.createElement('style'); style.textContent = '.upwork-badge{background:linear-gradient(135deg,#14A800,#0D8A00);padding:8px 20px;border-radius:30px;display:inline-flex;align-items:center;gap:10px;font-weight:600}.publication-badge{background:linear-gradient(135deg,#FF2D20,#9D4EDD);padding:6px 14px;border-radius:40px;font-size:0.8rem;font-weight:600;display:inline-flex;align-items:center;gap:8px}.pub-journal{font-family:JetBrains Mono,monospace;color:#00F0FF}'; document.head.appendChild(style);
     </script>
 </body>
 
